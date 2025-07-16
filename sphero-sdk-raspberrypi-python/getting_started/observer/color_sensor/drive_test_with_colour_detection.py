@@ -48,6 +48,10 @@ def color_detected_handler(color_detected_data):
     elif current_colour == "blue":
         # previous_colour = current_colour
         print('speed boost')
+        rvr.drive_tank_normalized(
+                left_velocity=32,  # Valid velocity values are [-127..127]
+                right_velocity=32  # Valid velocity values are [-127..127]
+        )
     else:
         print('continue driving')
         rvr.drive_tank_normalized(
