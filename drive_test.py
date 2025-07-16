@@ -34,15 +34,6 @@ def main():
                 right_velocity=16  # Valid velocity values are [-127..127]
             )
 
-            time.sleep(2)
-
-        rvr.drive_tank_normalized(
-            left_velocity=0,  # Valid velocity values are [-127..127]
-            right_velocity=0  # Valid velocity values are [-127..127]
-        )
-
-        time.sleep(2)
-
     except KeyboardInterrupt:
         print('\nProgram terminated with keyboard interrupt.')
 
