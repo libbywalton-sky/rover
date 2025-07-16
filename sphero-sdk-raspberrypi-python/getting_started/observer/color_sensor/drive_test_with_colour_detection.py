@@ -30,7 +30,6 @@ def color_detected_handler(color_detected_data):
         current_colour = "floor"
 
     print("Current color:", current_colour)
-    print("Previous color:", previous_colour)
     if previous_colour == current_colour:
         print("early return")
         return
