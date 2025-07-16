@@ -19,7 +19,7 @@ def color_detected_handler(color_detected_data):
     g = color_detected_data['ColorDetection']['G']
     b = color_detected_data['ColorDetection']['B']
 
-    if (r > 200 and g < 200 and b < 200):
+    if (r > 200 and g > 200 and b > 200):
         current_colour = "white";
     elif g > 230:
         print("Detected color: Tennis Ball")
