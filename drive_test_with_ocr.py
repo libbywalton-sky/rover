@@ -30,6 +30,8 @@ def main():
     # Give RVR time to wake up
     time.sleep(2)
 
+    current_command = "stop"
+
     while True:
         array = picam2.capture_array()
         data = [line.split('\t') for line in pytesseract.image_to_data(array).split('\n')][1:-1]
@@ -40,14 +42,19 @@ def main():
             text = item["text"].lower()
             print("Detected text:", text)
             if text == "go":
-                print("Text 'go' detected, moving RVR forward")
-                rvr.drive_tank_normalized(
+                current_command = "go"
+            elif text == "stop":
+                current_command = "stop"
+                
+        if current_command == "go":
+            print("RVR moving forward")
+            rvr.drive_tank_normalized(
                 left_velocity=16,  # Valid velocity values are [-127..127]
                 right_velocity=16  # Valid velocity values are [-127..127]
             )
-            elif text == "stop":
-                print("Text 'stop' detected, stopping RVR")
-                rvr.drive_tank_normalized(
+        elif current_command == "stop":
+            print("RVR stopping")
+            rvr.drive_tank_normalized(
                 left_velocity=0,  # Valid velocity values are [-127..127]
                 right_velocity=0  # Valid velocity values are [-127..127]
             )
