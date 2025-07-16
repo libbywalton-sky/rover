@@ -8,6 +8,8 @@ from sphero_sdk import RvrStreamingServices
 
 rvr = SpheroRvrObserver()
 
+current_colour = "floor"
+previous_color = current_colour
 
 def color_detected_handler(color_detected_data):
     print('Color detection data response: ', color_detected_data)
@@ -16,22 +18,40 @@ def color_detected_handler(color_detected_data):
     b = color_detected_data['ColorDetection']['B']
     if g > 230:
         print("Detected color: Tennis Ball")
-        rvr.drive_rc_si_units(
-            linear_velocity=.1,
-            yaw_angular_velocity=90,
-            flags=0
-        )
+        current_colour = "tennis ball"
     elif r > 230:
         print("Detected color: Neon Pink")
-        rvr.drive_rc_si_units(
-            linear_velocity=.1,
-            yaw_angular_velocity=90,
-            flags=0
-        )
+        current_colour = "neon pink"
     elif b > 150:
         print("Detected color: Blue")
+        current_colour = "blue"
     else:
         print("Detected color: Floor")
+        current_colour = "floor"
+
+    while time.sleep(0.2):
+        if previous_color == current_colour:
+            continue
+        elif current_colour == "tennis ball":
+            rvr.drive_rc_si_units(
+                linear_velocity=.1,
+                yaw_angular_velocity=90,
+                flags=0
+            )
+        elif current_colour == "neon pink":
+            rvr.drive_rc_si_units(
+                linear_velocity=.1,
+                yaw_angular_velocity=-90,
+                flags=0
+            )
+        elif current_colour == "blue":
+            print('speed boost')
+        else:
+            print('continue driving')
+        
+
+
+
 
 def main():
     """ This program demonstrates how to use the color sensor on RVR (located on the down side of RVR, facing the floor)
