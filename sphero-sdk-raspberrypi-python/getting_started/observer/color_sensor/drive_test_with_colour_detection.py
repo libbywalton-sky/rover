@@ -9,7 +9,7 @@ from sphero_sdk import RvrStreamingServices
 rvr = SpheroRvrObserver()
 
 current_colour = "floor"
-previous_color = current_colour
+previous_colour = current_colour
 
 def color_detected_handler(color_detected_data):
     print('Color detection data response: ', color_detected_data)
@@ -30,26 +30,26 @@ def color_detected_handler(color_detected_data):
         current_colour = "floor"
 
     print("Current color:", current_colour)
-    print("Previous color:", previous_color)
-    if previous_color == current_colour:
+    print("Previous color:", previous_colour)
+    if previous_colour == current_colour:
         print("early return")
         return
     elif current_colour == "tennis ball":
-        previous_color = current_colour
+        previous_colour = current_colour
         rvr.drive_rc_si_units(
             linear_velocity=.1,
             yaw_angular_velocity=90,
             flags=0
         )
     elif current_colour == "neon pink":
-        previous_color = current_colour
+        previous_colour = current_colour
         rvr.drive_rc_si_units(
             linear_velocity=.1,
             yaw_angular_velocity=-90,
             flags=0
         )
     elif current_colour == "blue":
-        previous_color = current_colour
+        previous_colour = current_colour
         print('speed boost')
     else:
         print('continue driving')
