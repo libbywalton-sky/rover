@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import requests
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../')))
 
 from sphero_sdk import SpheroRvrObserver
@@ -12,8 +13,10 @@ current_colour = "floor"
 previous_colour = "floor"
 speed = 16
 
+url = 'https://192.168.12.1:3000/car/colour'
+
 def color_detected_handler(color_detected_data):
-    global current_colour, previous_colour, speed
+    global current_colour, previous_colour, speed, url
     print('Color detection data response: ', color_detected_data)
     r = color_detected_data['ColorDetection']['R']
     g = color_detected_data['ColorDetection']['G']
@@ -21,15 +24,18 @@ def color_detected_handler(color_detected_data):
 
     if (r > 200 and g > 200 and b > 200):
         current_colour = "white";
+        myobj = { 'colour': 'white'}
+        requests.post(url, json = myobj)
     elif g > 230:
         print("Detected color: Tennis Ball")
         current_colour = "tennis ball"
+        myobj = { 'colour': 'green'}
+        requests.post(url, json = myobj)
     elif r > 230:
         print("Detected color: Neon Pink")
         current_colour = "neon pink"
-    elif b > 150:
-        print("Detected color: Blue")
-        current_colour = "blue"
+        myobj = { 'colour': 'pink'}
+        requests.post(url, json = myobj)
     else:
         print("Detected color: Floor")
         current_colour = "floor"
