@@ -35,18 +35,21 @@ def color_detected_handler(color_detected_data):
         print("early return")
         return
     elif current_colour == "tennis ball":
+        previous_color = current_colour
         rvr.drive_rc_si_units(
             linear_velocity=.1,
             yaw_angular_velocity=90,
             flags=0
         )
     elif current_colour == "neon pink":
+        previous_color = current_colour
         rvr.drive_rc_si_units(
             linear_velocity=.1,
             yaw_angular_velocity=-90,
             flags=0
         )
     elif current_colour == "blue":
+        previous_color = current_colour
         print('speed boost')
     else:
         print('continue driving')
