@@ -10,7 +10,7 @@ rvr = SpheroRvrObserver()
 
 current_colour = "floor"
 previous_colour = "floor"
-speed = "16"
+speed = 16
 
 def color_detected_handler(color_detected_data):
     global current_colour, previous_colour, speed
