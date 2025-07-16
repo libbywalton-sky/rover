@@ -30,6 +30,8 @@ def color_detected_handler(color_detected_data):
         current_colour = "floor"
 
     while time.sleep(0.2):
+        print("Current color:", current_colour)
+        print("Previous color:", previous_color)
         if previous_color == current_colour:
             continue
         elif current_colour == "tennis ball":
