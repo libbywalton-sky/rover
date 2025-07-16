@@ -10,9 +10,10 @@ rvr = SpheroRvrObserver()
 
 current_colour = "floor"
 previous_colour = "floor"
+speed = "16"
 
 def color_detected_handler(color_detected_data):
-    global current_colour, previous_colour
+    global current_colour, previous_colour, speed
     print('Color detection data response: ', color_detected_data)
     r = color_detected_data['ColorDetection']['R']
     g = color_detected_data['ColorDetection']['G']
@@ -53,11 +54,12 @@ def color_detected_handler(color_detected_data):
                 left_velocity=32,  # Valid velocity values are [-127..127]
                 right_velocity=32  # Valid velocity values are [-127..127]
         )
+        speed = 32
     else:
         print('continue driving')
         rvr.drive_tank_normalized(
-                left_velocity=16,  # Valid velocity values are [-127..127]
-                right_velocity=16  # Valid velocity values are [-127..127]
+                left_velocity=speed,  # Valid velocity values are [-127..127]
+                right_velocity=speed  # Valid velocity values are [-127..127]
         )
 
 def main():
