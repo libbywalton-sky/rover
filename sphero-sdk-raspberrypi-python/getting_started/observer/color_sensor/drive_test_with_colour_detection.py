@@ -29,27 +29,26 @@ def color_detected_handler(color_detected_data):
         print("Detected color: Floor")
         current_colour = "floor"
 
-    while time.sleep(0.2):
-        print("Current color:", current_colour)
-        print("Previous color:", previous_color)
-        if previous_color == current_colour:
-            continue
-        elif current_colour == "tennis ball":
-            rvr.drive_rc_si_units(
-                linear_velocity=.1,
-                yaw_angular_velocity=90,
-                flags=0
-            )
-        elif current_colour == "neon pink":
-            rvr.drive_rc_si_units(
-                linear_velocity=.1,
-                yaw_angular_velocity=-90,
-                flags=0
-            )
-        elif current_colour == "blue":
-            print('speed boost')
-        else:
-            print('continue driving')
+    print("Current color:", current_colour)
+    print("Previous color:", previous_color)
+    if previous_color == current_colour:
+        return
+    elif current_colour == "tennis ball":
+        rvr.drive_rc_si_units(
+            linear_velocity=.1,
+            yaw_angular_velocity=90,
+            flags=0
+        )
+    elif current_colour == "neon pink":
+        rvr.drive_rc_si_units(
+            linear_velocity=.1,
+            yaw_angular_velocity=-90,
+            flags=0
+        )
+    elif current_colour == "blue":
+        print('speed boost')
+    else:
+        print('continue driving')
         
 
 
