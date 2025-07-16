@@ -41,9 +41,9 @@ def main():
             item["box"] = tuple(map(int, item["box"]))
             text = item["text"].lower()
             print("Detected text:", text)
-            if text == "go":
+            if "go" in text:
                 current_command = "go"
-            elif text == "stop":
+            elif "stop" in text:
                 current_command = "stop"
                 
         if current_command == "go":
