@@ -9,7 +9,7 @@ from sphero_sdk import RvrStreamingServices
 rvr = SpheroRvrObserver()
 
 current_colour = "floor"
-previous_colour = current_colour
+previous_colour = "floor"
 
 def color_detected_handler(color_detected_data):
     print('Color detection data response: ', color_detected_data)
