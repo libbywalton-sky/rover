@@ -1,7 +1,7 @@
 import os
 import sys
 import time
-import requests
+import grequests
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../')))
 
 from sphero_sdk import SpheroRvrObserver
@@ -25,17 +25,17 @@ def color_detected_handler(color_detected_data):
     if (r > 200 and g > 200 and b > 200):
         current_colour = "white";
         myobj = { 'colour': 'white'}
-        requests.post(url, json = myobj, verify=False)
+        grequests.post(url, json = myobj, verify=False)
     elif g > 230:
         print("Detected color: Tennis Ball")
         current_colour = "tennis ball"
         myobj = { 'colour': 'green'}
-        requests.post(url, json = myobj, verify=False)
+        grequests.post(url, json = myobj, verify=False)
     elif r > 230:
         print("Detected color: Neon Pink")
         current_colour = "neon pink"
         myobj = { 'colour': 'pink'}
-        requests.post(url, json = myobj, verify=False)
+        grequests.post(url, json = myobj, verify=False)
     else:
         print("Detected color: Floor")
         current_colour = "floor"
