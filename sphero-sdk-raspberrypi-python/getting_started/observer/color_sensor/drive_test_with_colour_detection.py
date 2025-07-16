@@ -32,6 +32,7 @@ def color_detected_handler(color_detected_data):
     print("Current color:", current_colour)
     print("Previous color:", previous_color)
     if previous_color == current_colour:
+        print("early return")
         return
     elif current_colour == "tennis ball":
         rvr.drive_rc_si_units(
