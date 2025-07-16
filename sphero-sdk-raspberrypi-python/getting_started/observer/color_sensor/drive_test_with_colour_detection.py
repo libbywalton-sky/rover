@@ -40,14 +40,14 @@ def color_detected_handler(color_detected_data):
         previous_colour = current_colour
         rvr.drive_rc_si_units(
             linear_velocity=.1,
-            yaw_angular_velocity=90,
+            yaw_angular_velocity=110,
             flags=0
         )
     elif current_colour == "neon pink":
         previous_colour = current_colour
         rvr.drive_rc_si_units(
             linear_velocity=.1,
-            yaw_angular_velocity=-90,
+            yaw_angular_velocity=-110,
             flags=0
         )
     elif current_colour == "white":
