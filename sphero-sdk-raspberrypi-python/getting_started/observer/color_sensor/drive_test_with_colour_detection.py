@@ -8,10 +8,7 @@ from sphero_sdk import RvrStreamingServices
 
 rvr = SpheroRvrObserver()
 
-current_colour = "floor"
-previous_colour = "floor"
-
-def color_detected_handler(color_detected_data):
+def color_detected_handler(color_detected_data, current_colour, previous_colour):
     print('Color detection data response: ', color_detected_data)
     r = color_detected_data['ColorDetection']['R']
     g = color_detected_data['ColorDetection']['G']
@@ -61,6 +58,8 @@ def main():
     """ This program demonstrates how to use the color sensor on RVR (located on the down side of RVR, facing the floor)
         to report colors detected.
     """
+    current_colour = "floor"
+    previous_colour = "floor"   
 
     try:
         rvr.wake()
@@ -71,7 +70,7 @@ def main():
         rvr.enable_color_detection(is_enabled=True)
         rvr.sensor_control.add_sensor_data_handler(
             service=RvrStreamingServices.color_detection,
-            handler=color_detected_handler
+            handler=color_detected_handler(current_colour, previous_colour)
         )
         rvr.sensor_control.start(interval=250)
 
