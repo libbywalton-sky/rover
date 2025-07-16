@@ -16,8 +16,18 @@ def color_detected_handler(color_detected_data):
     b = color_detected_data['ColorDetection']['B']
     if g > 230:
         print("Detected color: Tennis Ball")
+        rvr.drive_rc_si_units(
+            linear_velocity=.1,
+            yaw_angular_velocity=90,
+            flags=0
+        )
     elif r > 230:
         print("Detected color: Neon Pink")
+        rvr.drive_rc_si_units(
+            linear_velocity=.1,
+            yaw_angular_velocity=90,
+            flags=0
+        )
     elif b > 150:
         print("Detected color: Blue")
     else:
