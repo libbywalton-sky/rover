@@ -34,8 +34,10 @@ def main():
 
     while True:
         print("doing text detection")
-        array = picam2.capture_array(wait=False)
+        array = picam2.capture_array()
+        print("Captured image array")
         data = [line.split('\t') for line in pytesseract.image_to_data(array).split('\n')][1:-1]
+        print("retrived data")
         data = [{"text": item[11], "conf": int(item[10]), "box": (item[6], item[7], item[8], item[9])} for item in data]
         data = [item for item in data if item["conf"] > threshold and not item["text"].isspace()]
         print("Detected data:", data)
