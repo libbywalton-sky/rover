@@ -12,6 +12,7 @@ current_colour = "floor"
 previous_colour = "floor"
 
 def color_detected_handler(color_detected_data):
+    global current_colour, previous_colour
     print('Color detection data response: ', color_detected_data)
     r = color_detected_data['ColorDetection']['R']
     g = color_detected_data['ColorDetection']['G']
@@ -53,10 +54,6 @@ def color_detected_handler(color_detected_data):
         print('speed boost')
     else:
         print('continue driving')
-        
-
-
-
 
 def main():
     """ This program demonstrates how to use the color sensor on RVR (located on the down side of RVR, facing the floor)
