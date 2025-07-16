@@ -18,7 +18,10 @@ def color_detected_handler(color_detected_data):
     r = color_detected_data['ColorDetection']['R']
     g = color_detected_data['ColorDetection']['G']
     b = color_detected_data['ColorDetection']['B']
-    if g > 230:
+
+    if (r > 200 and g < 200 and b < 200):
+        current_colour = "white";
+    elif g > 230:
         print("Detected color: Tennis Ball")
         current_colour = "tennis ball"
     elif r > 230:
@@ -47,7 +50,7 @@ def color_detected_handler(color_detected_data):
             yaw_angular_velocity=-90,
             flags=0
         )
-    elif current_colour == "blue":
+    elif current_colour == "white":
         previous_colour = current_colour
         print('speed boost')
         rvr.drive_tank_normalized(
